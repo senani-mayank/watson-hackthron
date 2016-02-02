@@ -1,0 +1,136 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Watson APIs",
+    "description": "API for using the Watson services.",
+    "version": "1.0"
+  },
+  "host": "10.44.119.5:8000",
+  "basePath": "/api/v1",
+  "paths": {
+    "/text_to_speech": {
+      "post": {
+        "x-swagger-router-controller": "text_to_speech",
+        "operationId": "textToSpeech",
+        "tags": ["Text To Speech"],
+        "description": "Convert text to speech",
+        "parameters": [
+          {
+            "name": "text",
+            "in": "formData",
+            "description": "Text to be converted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Unexpected Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "Successfully converted text into audio.",
+            "schema": {
+              "$ref": "#/definitions/textToSpeechResp"
+            }
+          }
+        }
+      }
+    },
+    "/speech_to_text": {
+      "post": {
+        "x-swagger-router-controller": "speech_to_text",
+        "operationId": "speechToText",
+        "tags": ["Speech To Text"],
+        "description": "Convert speech to text",
+        "parameters": [
+          {
+            "name": "audio",
+            "in": "formData",
+            "description": "Audio file to be converted",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Unexpected Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "Successfully converted audio into text.",
+            "schema": {
+              "$ref": "#/definitions/speechToTextResp"
+            }
+          }
+        }
+      }
+    },
+    "/visual_recognition": {
+      "post": {
+        "x-swagger-router-controller": "visual_recognition",
+        "operationId": "visualRecognition",
+        "tags": ["Recognize an image"],
+        "description": "Show image contents",
+        "parameters": [
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Image to be recognized",
+            "required": true,
+            "type": "string",
+            "format": "byte"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Unexpected Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "Successfully recognized the image contents.",
+            "schema": {
+              "$ref": "#/definitions/visualRecognitionResp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Error": {
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "textToSpeechResp": {
+      "properties": {
+        "result": {
+          "type":"string"
+        }
+      }
+    },
+    "speechToTextResp": {
+      "properties": {
+        "result": {
+          "type":"string"
+        }
+      }
+    },
+    "visualRecognitionResp": {
+      "properties": {
+        "result": {
+          "type":"string"
+        }
+      }
+    }
+  }
+}

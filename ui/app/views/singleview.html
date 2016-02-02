@@ -1,0 +1,85 @@
+<div class="text-center">
+	<ng-audio-recorder id='audioInput' audio-model='recordedInput' on-record-complete="onRecordComplete( 0 )">
+		<div class="col-xs-12" ng-if="recorder.isAvailable">
+			<div class="col-xs-6">
+			  <button class="btn btn-success pull-right" ng-click="recorder.startRecord()" type="button" ng-disabled="recorder.status.isRecording">Start Recording</button>  
+			</div>
+			<div class="col-xs-6">
+			 <button class="btn btn-danger pull-left" ng-click="recorder.stopRecord()" type="button" ng-disabled="recorder.status.isRecording === false">Stop Recording</button>
+			</div>
+			 <div ng-if="!recorder.isAvailable" class="text-center text danger">
+				Recording is not posible in this device/browser.
+            </div>
+		</div>
+		
+		
+	<div class="col-xs-6 ">
+			<h2>Audio File Sent:-</h2>
+			<em ng-click="recorder.playbackRecording()" type="button"
+            ng-disabled="recorder.status.isRecording || !recorder.audioModel" class="fa fa-play-circle " style="font-size:80px;"></em>
+	</div>
+	</ng-audio-recorder>
+	<div class="col-xs-6">
+		<h2>Text Recived:-</h2>	
+		 <p ng-bind="RecivedTextFromAudio"></p>
+	</div>
+	<div class="clearfix"></div>
+    <!--<button ng-click="recorder.playbackRecording()" type="button"
+            ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+        Play Back
+    </button>-->
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+	<div class="col-xs-6" ng-controller="CameraController">
+		<h2>Picture Sent:-</h2>
+			<canvas id="canvas" width="300" height="300">
+			</canvas> 
+			<video ng-hide="true"></video>
+	</div>
+	<div class="col-xs-offset-1 col-xs-5">
+		<h2>Labels Recived:-</h2>	
+		 <table border="1">
+			 <thead>
+				 <tr>
+				  <td colspan = 2>&nbsp;Keyword&nbsp;</td>
+				  <td>&nbsp;Accuracy&nbsp;</td>
+				 </tr>
+				 
+				 <tr ng-repeat="label in recogenizedLabels">
+				   <td colspan = 2 class="text-left">&nbsp;{{label.label_name}}&nbsp;</td>
+				   <td class="text-right">&nbsp;{{(label.label_score * 100.0)  }}&nbsp;</td>
+				 </tr>
+			  
+		  </table>
+	</div>
+</div>
+
+
+
+<div class="row">
+	<div class="col-xs-6">
+		<h2>Text Sent:-</h2>
+			
+	</div>
+<div class="col-xs-6">
+	<h2>Audio Recived:-</h2>	
+		<audio controls>
+			<source ng-src="horse.ogg" type="audio/wav">
+			Your browser does not support the audio element.
+		</audio>  
+	</div>
+</div>
+
+</div>
+
+
