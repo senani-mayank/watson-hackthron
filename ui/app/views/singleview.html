@@ -29,16 +29,6 @@
         Play Back
     </button>-->
 
-
-
-
-
-
-
-
-
-
-
 <div class="row">
 	<div class="col-xs-6" ng-controller="CameraController">
 		<h2>Picture Sent:-</h2>
@@ -66,20 +56,17 @@
 
 
 
+
 <div class="row">
 	<div class="col-xs-6">
 		<h2>Text Sent:-</h2>
-			
+			<p ng-bind="speechTextSent"></p>
 	</div>
-<div class="col-xs-6">
-	<h2>Audio Recived:-</h2>	
-		<audio controls>
-			<source ng-src="horse.ogg" type="audio/wav">
-			Your browser does not support the audio element.
-		</audio>  
+	<div class="col-xs-6 ">
+			<h2>Audio File Recived:-</h2>
+			<em ng-click="playRecivedSpeech()" type="button" class="fa fa-play-circle " style="font-size:80px;"></em>
 	</div>
 </div>
 
 </div>
-
 
