@@ -1,5 +1,5 @@
 //var baseURL="http://brl05831:8000/api/v1"
-var baseURL = "http://10.44.119.5:8000/api/v1"
+var baseURL = "https://10.44.119.5:8000/api/v1"
 /*!
  * 
  * Angle - Bootstrap Admin App + AngularJS
