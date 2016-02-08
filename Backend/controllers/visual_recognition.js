@@ -16,8 +16,10 @@ module.exports.visualRecognition = function visualRecognition(req, res, next) {
   }
 
   var image = req.swagger.params.image.value;
+  var extension = image.substring(11, image.indexOf(';'));
   var base64Data = image.substring(image.indexOf(',')+1);
-  var filePath = "./.tmp/output.png";
+  var filePath = "./.tmp/output." + extension;
+console.log("Filepath : " + filePath);
   // fs.writeFileSync(filePath, file.buffer);
 
   // console.log("Before writing file..............................................");
