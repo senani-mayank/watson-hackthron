@@ -6,7 +6,7 @@ var app = express();
 
 module.exports.textToSpeech = function textToSpeech(req, res, next) {
 
-  res.setHeader("Content-Type", "application/json");
+  //res.setHeader("Content-Type", "audio/x-wav");
   console.log("Conversion started...");
   var outputPath = "./resources/output.wav";
   console.log(JSON.stringify(req.swagger.params.text.value));
@@ -29,8 +29,7 @@ module.exports.textToSpeech = function textToSpeech(req, res, next) {
       //     'Content-Disposition': 'attachment; filename=./resources/output.wav'
       // });
 
-      fs.readFile('./resources/output.wav', function (err, data) {
-        console.log(data);
+      fs.readFile('./resources/output.wav', 'base64', function (err, data) {
         res.end(data);
       });
 

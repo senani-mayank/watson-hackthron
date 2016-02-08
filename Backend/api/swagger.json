@@ -7,6 +7,10 @@
   },
   "host": "10.44.119.5:8000",
   "basePath": "/api/v1",
+  "schemes": [
+    "http",
+    "https"
+  ],
   "paths": {
     "/text_to_speech": {
       "post": {
@@ -51,7 +55,8 @@
             "in": "formData",
             "description": "Audio file to be converted",
             "required": true,
-            "type": "file"
+            "type": "string",
+            "format": "byte"
           }
         ],
         "responses": {

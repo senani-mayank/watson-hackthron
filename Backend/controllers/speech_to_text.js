@@ -6,13 +6,18 @@ module.exports.speechToText = function speechToText(req, res, next) {
 
   //res.setHeader("Content-Type", "application/json");
   console.log("Conversion started...");
-  var file = req.swagger.params.audio.value;
-  //console.log("File", JSON.stringify(file));
+
+  var audio = req.swagger.params.audio.value;
+  var extension = audio.substring(11, audio.indexOf(';'));
+  // console.log("Extension : " + extension);
+  var base64Data = audio.substring(audio.indexOf(',')+1);
+
   if(!fs.existsSync("./.tmp")) {
     fs.mkdirSync("./.tmp");
   }
-  var filePath = "./.tmp/convert.wav";
-  fs.writeFileSync(filePath, file.buffer);
+  var filePath = "./.tmp/convert." + extension;
+  console.log("Filepath : " + filePath);
+  fs.writeFileSync(filePath, base64Data, 'base64');
   var curlCommand = 'curl -u ' + config.speechtotext.username + ':' + config.speechtotext.password + ' -k -X POST --header "Content-Type: audio/wav" --data-binary @' + filePath + ' "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?continuous=true"';
   cp.exec(curlCommand, function(error, stdout, stderr) {
     //console.log('stdout : ' + stdout);
