@@ -5,7 +5,7 @@
     "description": "API for using the Watson services.",
     "version": "1.0"
   },
-  "host": "10.44.119.5:8000",
+  "host": "edt-experience.cloudapp.net:8000",
   "basePath": "/api/v1",
   "schemes": [
     "http",
